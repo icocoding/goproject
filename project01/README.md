@@ -3,7 +3,7 @@
 ### 运行方式
 main.go调用了其他同包(main)文件的函数
 ```
-cd project01/main
+cd goproject
 go run .
 ```
 或者
@@ -29,9 +29,9 @@ go run main.go test01.go test02.go
 
     `go env -w GOPROXY=https://goproxy.cn,direct`
 
-### [Test01](./main/test01.go)
+### [Test01](./test01.go)
 
 - 使用 Http GET, 并设置请求头, 否则会被服务器拒绝请求
 - 将获得的数据转换为json(非结构化), 从json中获取指定key数值
 
-### [Test02](./main/test02.go)
+### [Test02](./test02.go)
