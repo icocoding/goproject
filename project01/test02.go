@@ -1,36 +1,38 @@
-package main
+package project01
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
+
 	"github.com/tidwall/gjson"
 )
+
 /**
 * 从网络获取数据, 并解析为json 结构化
-*/
-
+ */
 
 type Group struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
+	Id          string `json:"id"`
+	Name        string `json:"name"`
 	GroupNumber string `json:"group_number"`
-	GroupKey string `json:"group_key"`
+	GroupKey    string `json:"group_key"`
 }
 type MyData struct {
-	ID     string   `json:"id"`
-	Name   string   `json:"name"`
-	Icon   string   `json:"icon"`
-	Status string   `json:"status"`
+	ID     string  `json:"id"`
+	Name   string  `json:"name"`
+	Icon   string  `json:"icon"`
+	Status string  `json:"status"`
 	Groups []Group `json:"groups"`
 }
 type HttpResp struct {
-	Code int `json:"code"`
-	Msg string `json:"msg"`
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
 	Data struct {
-        List []MyData `json:"list"`
-    } `json:"data"`
+		List []MyData `json:"list"`
+	} `json:"data"`
 }
-func Test02()  {
+
+func Test02() {
 	data := Test01()
 	fmt.Println("======> get data from test01")
 

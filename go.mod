@@ -1,4 +1,4 @@
-module project01/main
+module cocoding-org/goproject
 
 go 1.20
 
