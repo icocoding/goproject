@@ -7,10 +7,9 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-/**
-* 从网络获取数据, 并解析为json 结构化
- */
-
+/*
+从网络获取数据, 并解析为json 结构化
+*/
 type Group struct {
 	Id          string `json:"id"`
 	Name        string `json:"name"`
@@ -45,15 +44,16 @@ func Test02() {
 	fmt.Println(respData.Code)
 	fmt.Println(respData.Msg)
 
-	var myData []MyData
-	myData = respData.Data.List
+	myData := respData.Data.List
 
 	fmt.Println(myData[0].ID, myData[0].Name)
 
 	fmt.Println("======> use gson")
+
 	m, ok := gjson.Parse(data).Value().(map[string]interface{})
 	if !ok {
-		// not a map
+		fmt.Println("gson parse error:", ok)
+		return
 	}
 	fmt.Println(m["code"])
 	fmt.Println(m["msg"])

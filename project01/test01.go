@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-/**
-* 从网络获取数据, 并解析为json(非结构化)
- */
+/*
+从网络获取数据, 并解析为json(非结构化)
+*/
 func Test01() string {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://www.bejson.com/Bejson/Api/LanguageGroup/getGroupList?site_id=2", nil)
