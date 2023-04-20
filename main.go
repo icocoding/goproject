@@ -12,5 +12,5 @@ func main() {
 	// project01.Test01()
 	// project01.Test02()
 	project02.Test01()
-	// project02.Test02()
+	// project02.GetId()
 }

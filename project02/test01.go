@@ -14,33 +14,14 @@ import (
 func Test01() {
 	path := "./project02/files/test.json"
 	fmt.Println("project 02 test 01: File read & write")
-	dir, err := os.Getwd()
+	fileData, err := ReadFile(path)
 	if err != nil {
-		fmt.Println("cwd error")
+		fmt.Println("ReadFile err:", err)
 		return
 	}
-	fmt.Println("current dir: ", dir)
-	// 打开文件
-	jsonFile, err := os.Open(path)
-
-	if os.IsExist(err) {
-		fmt.Println("open test.json file error")
-		return
-	}
-	defer jsonFile.Close()
-
-	// 读取文件内容
-	jsonData, err := ioutil.ReadAll(jsonFile)
-	if err != nil {
-		fmt.Println("read test.json file error")
-		return
-	}
-
-	fmt.Println(string(jsonData))
-
-	id := Test02()
+	id := GetId()
 	var j interface{}
-	err = json.Unmarshal(jsonData, &j)
+	err = json.Unmarshal(fileData, &j)
 	if err != nil {
 		fmt.Println("parse json err:", err)
 		return
@@ -55,18 +36,46 @@ func Test01() {
 		fmt.Println("Marshal json err:", err)
 		return
 	}
-	err = os.WriteFile(path, []byte(str), os.ModePerm)
+	//写入文件
+	err = os.WriteFile(path, str, os.ModePerm)
 	if err != nil {
 		fmt.Println("WriteFile err:", err)
 		return
 	}
 	fmt.Println("WriteFile success")
 }
+func ReadFile(path string) ([]byte, error) {
+	dir, err := os.Getwd()
+	b0 := make([]byte, 0)
+	if err != nil {
+		fmt.Println("cwd error")
+		return b0, err
+	}
+	fmt.Println("current dir: ", dir)
+	// 打开文件
+	jsonFile, err := os.Open(path)
+
+	if os.IsExist(err) {
+		fmt.Println("open test.json file error")
+		return b0, err
+	}
+	defer jsonFile.Close()
+
+	// 读取文件内容
+	jsonData, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Println("read test.json file error")
+		return b0, err
+	}
+
+	fmt.Println(string(jsonData))
+	return jsonData, nil
+}
 
 /*
-写入文件内容, 将ID改为当前格式化都时间
+时间格式化为Id
 */
-func Test02() string {
+func GetId() string {
 	timeNow := time.Now()
 
 	timeMillis := timeNow.UTC()
