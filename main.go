@@ -13,5 +13,6 @@ func main() {
 	// project01.Test02()
 	// project02.Test01()
 	// project02.GetId()
-	project03.Server()
+	// project03.Server()
+	project03.Iris()
 }

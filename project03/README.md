@@ -14,3 +14,6 @@
 <http://localhost:8099/html>
 
 `这里是Go Project学习站`
+
+## Iris
+<http://localhost:8098/ping>

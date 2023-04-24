@@ -11,7 +11,8 @@ func HtmlPage(res http.ResponseWriter, req *http.Request) {
 	dir, err := os.Getwd()
 	if err != nil {
 		fmt.Println("cwd error")
-		return
+		panic(err)
+		// return
 	}
 	fmt.Println("current dir: ", dir)
 	// /Users/etoneyang/Documents/Project/goproject/project03/html/index.html
