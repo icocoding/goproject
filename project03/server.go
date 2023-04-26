@@ -19,9 +19,24 @@ func Server() {
 
 func Iris() {
 	app := iris.Default()
+
 	app.Use(myMiddleware)
+
+	app.RegisterView(iris.HTML("./project03/views", ".html"))
+
 	app.Handle("GET", "/ping", func(ctx iris.Context) {
+		//输出JSON
 		ctx.JSON(iris.Map{"message": "pong"})
+	})
+	app.Post("/hello", func(ctx iris.Context) {
+		//输出字符串
+		ctx.WriteString("hi," + ctx.FormValue("username"))
+	})
+	app.Handle("GET", "/", func(ctx iris.Context) {
+		// 设置消息
+		ctx.ViewData("message", "hello golang")
+		//加载模板
+		ctx.View("index.html")
 	})
 
 	app.Run(iris.Addr(":8098"))

@@ -10,4 +10,7 @@
 创建服务(server), 实现Http Get Post
 
 ## project04
-数据开发, 连接sqlite, MySQL
+数据开发, 连接sqlite, MySQL, MongoDB
+
+## project05
+中间件, 消息, Redis
